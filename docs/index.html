@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0B1B2B" />
+  <meta name="description" content="Premium Airbnb turnover cleaning with weekend availability, photo checklist, linen/restocking support, and backup coverage." />
+  <title>Airbnb Turnover Cleaning You Can Count On</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <style>
+    :root{
+      --navy:#0B1B2B;
+      --navy2:#10263C;
+      --teal:#2EC4B6;
+      --teal2:#1FA99D;
+      --border: rgba(11, 27, 43, 0.12);
+      --muted: rgba(11, 27, 43, 0.70);
+      --shadow: 0 18px 45px rgba(11,27,43,0.14);
+      --shadow2: 0 10px 24px rgba(11,27,43,0.10);
+      --container: 1120px;
+      --r-lg: 18px;
+      --r-md: 14px;
+      --r-sm: 12px;
+    }
+
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--navy);
+      background:#fff;
+      line-height:1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none;}
+
+    .container{width:min(100% - 32px, var(--container)); margin:0 auto;}
+    .section{padding:72px 0;}
+    .section--tight{padding:56px 0;}
+
+    .grid{display:grid; gap:18px;}
+    .grid-2{grid-template-columns:1fr;}
+    .grid-3{grid-template-columns:1fr;}
+    @media(min-width:860px){
+      .grid-2{grid-template-columns:1.1fr 0.9fr; gap:28px;}
+      .grid-3{grid-template-columns:repeat(3,1fr); gap:22px;}
+    }
+
+    /* Nav */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__row{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0;}
+    .brand{display:flex; align-items:center; gap:10px; min-width:220px;}
+    .brand__mark{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#DFF7F4;
+      background: radial-gradient(120% 120% at 20% 10%, rgba(46,196,182,0.85) 0%, rgba(46,196,182,0.25) 40%, rgba(11,27,43,0.05) 70%),
+                  linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+      box-shadow: var(--shadow2);
+    }
+    .brand__name{font-weight:800; letter-spacing:-0.02em; font-size:14px; line-height:1.1;}
+    .brand__tag{font-size:12px; color: rgba(11,27,43,0.66); margin-top:2px;}
+    .nav__links{display:none; align-items:center; gap:18px;}
+    .nav__links a{font-size:14px; color: rgba(11,27,43,0.82); padding:8px 10px; border-radius:10px; transition: background 160ms ease, color 160ms ease;}
+    .nav__links a:hover{background: rgba(46,196,182,0.10); color: var(--navy);}
+    @media(min-width:860px){.nav__links{display:flex;}}
+
+    .nav__cta{display:flex; gap:10px; align-items:center;}
+
+    /* Buttons */
+    .btn{
+      border:1px solid transparent;
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:700;
+      letter-spacing:-0.01em;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      white-space:nowrap;
+    }
+    .btn:focus-visible{outline:none; box-shadow: 0 0 0 4px rgba(46,196,182,0.25);}
+    .btn--small{padding:10px 12px; border-radius:12px; font-size:13.5px;}
+    .btn--primary{background: linear-gradient(135deg, var(--teal) 0%, var(--teal2) 100%); color:#062225; box-shadow: 0 12px 26px rgba(46,196,182,0.24);}
+    .btn--primary:hover{transform: translateY(-1px); box-shadow: 0 16px 32px rgba(46,196,182,0.30);}
+    .btn--ghost{background: rgba(11,27,43,0.04); color: var(--navy); border-color: rgba(11,27,43,0.10);}
+    .btn--ghost:hover{background: rgba(46,196,182,0.10); border-color: rgba(46,196,182,0.25); transform: translateY(-1px);}
+    .btn--call{background: rgba(11,27,43,0.06); border-color: rgba(11,27,43,0.14); color: rgba(11,27,43,0.92);}
+    .btn--call:hover{background: rgba(11,27,43,0.09); transform: translateY(-1px);}
+
+    /* Hero */
+    .hero{
+      padding: 62px 0 26px;
+      background:
+        radial-gradient(1200px 520px at 15% 5%, rgba(46,196,182,0.30) 0%, rgba(46,196,182,0.08) 45%, rgba(255,255,255,0) 70%),
+        radial-gradient(900px 420px at 85% 15%, rgba(11,27,43,0.10) 0%, rgba(11,27,43,0.02) 55%, rgba(255,255,255,0) 75%),
+        linear-gradient(180deg, rgba(11,27,43,0.04) 0%, rgba(255,255,255,1) 70%);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-120px -120px auto auto;
+      width:380px;height:380px;
+      background: radial-gradient(closest-side, rgba(46,196,182,0.35), rgba(46,196,182,0.00));
+      transform: rotate(12deg);
+      pointer-events:none;
+    }
+    @media(min-width:860px){.hero{padding:82px 0 48px;}}
+
+    .hero__card{background: rgba(255,255,255,0.72); border:1px solid var(--border); border-radius: var(--r-lg); box-shadow: var(--shadow); padding:22px;}
+    @media(min-width:860px){.hero__card{padding:26px;}}
+
+    .kicker{display:inline-flex; align-items:center; gap:10px; padding:8px 12px; border-radius:999px;
+      background: rgba(46,196,182,0.10);
+      border: 1px solid rgba(46,196,182,0.20);
+      color: rgba(11,27,43,0.92);
+      font-weight:700;
+      font-size:13px;
+    }
+    h1{font-family: Fraunces, Georgia, serif; letter-spacing:-0.03em; line-height:1.06; margin:14px 0 10px; font-size: clamp(34px, 4.2vw, 54px);}
+    .hero__sub{font-size:16px; color: rgba(11,27,43,0.78); margin: 0 0 18px; max-width:62ch;}
+
+    .hero__actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:16px;}
+
+    .trust{margin-top:18px; display:grid; grid-template-columns:1fr; gap:10px;}
+    @media(min-width:860px){.trust{grid-template-columns: repeat(3, 1fr);}}
+    .trust__item{display:flex; gap:12px; align-items:flex-start; padding:12px; border-radius:14px; border:1px solid rgba(11,27,43,0.10); background: rgba(255,255,255,0.55);}
+    .trust__icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background: rgba(46,196,182,0.12); border:1px solid rgba(46,196,182,0.20);}
+    .trust__title{font-weight:800; font-size:14px; margin:0;}
+    .trust__text{font-size:13px; color: rgba(11,27,43,0.68); margin:2px 0 0;}
+
+    .eyebrow{color: rgba(46,196,182,0.95); font-weight:800; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; margin:0 0 8px;}
+    .h2{font-family: Fraunces, Georgia, serif; font-size: clamp(26px, 3vw, 34px); letter-spacing:-0.02em; margin:0 0 10px; line-height:1.15;}
+    .lead{margin:0; color: rgba(11,27,43,0.72); font-size:15.5px; max-width:74ch;}
+
+    .card{border: 1px solid var(--border); border-radius: var(--r-lg); background:#fff; box-shadow: var(--shadow2); padding:18px;}
+    .card--soft{background: linear-gradient(180deg, rgba(46,196,182,0.06), rgba(255,255,255,1)); border-color: rgba(46,196,182,0.18);}
+    .card__top{display:flex; gap:12px; align-items:center; margin-bottom:10px;}
+    .card__icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background: rgba(11,27,43,0.06); border:1px solid rgba(11,27,43,0.10);}
+    .card__title{font-weight:900; margin:0; letter-spacing:-0.01em;}
+    .card__desc{margin:0; color: rgba(11,27,43,0.70); font-size:14px;}
+
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:999px; background: rgba(11,27,43,0.04);
+      border:1px solid rgba(11,27,43,0.10);
+      color: rgba(11,27,43,0.78);
+      font-size:13px;
+      font-weight:700;
+      margin-top:10px;
+    }
+    .pill i{color: rgba(46,196,182,0.95);}
+
+    ul.clean{padding:0; margin:12px 0 0; list-style:none; display:grid; gap:8px; color: rgba(11,27,43,0.74); font-size:14px;}
+    ul.clean li{display:flex; gap:10px; align-items:flex-start;}
+    ul.clean i{color: rgba(46,196,182,0.95); margin-top:2px;}
+
+    .price{font-size:28px; font-weight:900; letter-spacing:-0.02em; margin:10px 0 6px;}
+    .price small{font-size:13px; color: rgba(11,27,43,0.62); font-weight:700; margin-left:6px;}
+
+    .note{margin-top:14px; color: rgba(11,27,43,0.66); font-size:13px; padding:12px 14px; border:1px dashed rgba(11,27,43,0.18); border-radius:14px; background: rgba(11,27,43,0.03);}
+
+    .stars{color: rgba(46,196,182,0.95); letter-spacing:1px; margin-bottom:10px; font-size:14px;}
+    .review__quote{margin:0; color: rgba(11,27,43,0.76); font-size:14.5px;}
+    .review__meta{margin-top:12px; display:flex; align-items:center; gap:10px; color: rgba(11,27,43,0.70); font-size:13px; font-weight:700;}
+    .avatar{width:34px;height:34px;border-radius:12px;background: linear-gradient(135deg, rgba(46,196,182,0.25), rgba(11,27,43,0.06)); border:1px solid rgba(11,27,43,0.08); display:grid; place-items:center;}
+
+    /* Form */
+    .form{display:grid; gap:12px;}
+    .fields{display:grid; gap:12px; grid-template-columns:1fr;}
+    @media(min-width:860px){.fields{grid-template-columns: repeat(2, 1fr);} .span-2{grid-column: 1 / -1;}}
+    label{font-weight:800; font-size:13px; color: rgba(11,27,43,0.78); display:block; margin-bottom:6px;}
+    .input, select, textarea{width:100%; padding:12px 12px; border-radius:14px; border:1px solid rgba(11,27,43,0.16); background: rgba(255,255,255,0.95); transition: border-color 160ms ease, box-shadow 160ms ease;}
+    textarea{min-height:110px; resize:vertical;}
+    .input:focus, select:focus, textarea:focus{outline:none; border-color: rgba(46,196,182,0.55); box-shadow: 0 0 0 4px rgba(46,196,182,0.18);}
+    .hint{margin-top:6px; font-size:12.5px; color: rgba(11,27,43,0.60);}
+
+    .checkbox{display:flex; gap:10px; align-items:flex-start; padding:12px 12px; border:1px solid rgba(11,27,43,0.12); border-radius:14px; background: rgba(11,27,43,0.03);}
+    .checkbox input{margin-top:3px;}
+    .checkbox p{margin:0; color: rgba(11,27,43,0.72); font-size:13.5px;}
+
+    .error{display:none; margin-top:8px; padding:10px 12px; border-radius:14px; border:1px solid rgba(220,38,38,0.22); background: rgba(220,38,38,0.06); color: rgba(127,29,29,0.95); font-weight:700; font-size:13.5px;}
+    .success{display:none; margin-top:12px; padding:14px 14px; border-radius:16px; border:1px solid rgba(46,196,182,0.30); background: rgba(46,196,182,0.10);}
+    .success h3{margin:0 0 8px; font-size:16px;}
+
+    .summary{margin:0; white-space:pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:12.5px; color: rgba(11,27,43,0.82); background: rgba(255,255,255,0.70); border:1px solid rgba(11,27,43,0.10);
+      border-radius:14px; padding:12px; overflow-x:auto;
+    }
+
+    .divider{height:1px; background: rgba(11,27,43,0.10); margin:18px 0;}
+
+    .footer{padding:28px 0 90px; border-top:1px solid var(--border); background: linear-gradient(180deg, rgba(11,27,43,0.02), rgba(255,255,255,1));}
+    .footer__row{display:grid; gap:10px; grid-template-columns:1fr;}
+    @media(min-width:860px){.footer__row{grid-template-columns:1.2fr 0.8fr; align-items:start;}}
+    .footer__small{font-size:13px; color: rgba(11,27,43,0.70); margin:6px 0 0; max-width:72ch;}
+    .footer__meta{font-size:13px; color: rgba(11,27,43,0.70); margin:0; text-align:left;}
+    @media(min-width:860px){.footer__meta{text-align:right;}}
+
+    /* Reveals */
+    .reveal{opacity:0; transform: translateY(14px); transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2,0.8,0.2,1);}
+    .reveal.reveal--show{opacity:1; transform: translateY(0);}
+    .hero__anim{opacity:0; transform: translateY(18px); transition: opacity 900ms ease, transform 900ms cubic-bezier(0.2,0.85,0.2,1);}
+    .hero__anim.is-in{opacity:1; transform: translateY(0);}
+
+    .floating-cta{position:fixed; left:14px; right:14px; bottom:14px; z-index:60; display:none;}
+    .floating-cta .btn{width:100%; border-radius:16px; padding:14px 16px; box-shadow: 0 16px 32px rgba(11,27,43,0.18);}
+    @media(max-width:859px){.floating-cta{display:block;}}
+  </style>
+</head>
+<body>
+  <header class="nav" role="banner">
+    <div class="container nav__row">
+      <a class="brand" href="#top" aria-label="Home">
+        <span class="brand__mark" aria-hidden="true"><i class="fa-solid fa-sparkles"></i></span>
+        <span>
+          <div class="brand__name" id="brandName">Turnover Cleaning Co.</div>
+          <div class="brand__tag">Airbnb Turnovers • Reliable, premium</div>
+        </span>
+      </a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#area">Service Area</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#book">Book Now</a>
+      </nav>
+
+      <div class="nav__cta">
+        <a class="btn btn--call btn--small" id="callBtnTop" href="#" aria-label="Call or text">
+          <i class="fa-solid fa-phone"></i><span>Call/Text</span>
+        </a>
+        <a class="btn btn--primary btn--small" href="#book"><i class="fa-solid fa-calendar-check"></i><span>Book Now</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" role="main">
+    <section class="hero">
+      <div class="container grid grid-2">
+        <div class="hero__anim" id="heroAnim">
+          <span class="kicker"><i class="fa-solid fa-badge-check"></i> Premium Airbnb turnover cleaning</span>
+          <h1>Airbnb Turnover Cleaning You Can Count On</h1>
+          <p class="hero__sub">
+            Built for weekend turnovers with a photo checklist, linens/restocking support, and backup coverage when you need it.
+            Clean, consistent, guest-ready.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#book" id="ctaBook"><i class="fa-solid fa-broom-ball"></i><span>Book a Turnover</span></a>
+            <a class="btn btn--ghost" href="#book" id="ctaQuote"><i class="fa-solid fa-tag"></i><span>Get a Quote</span></a>
+          </div>
+
+          <div class="trust" aria-label="Key highlights">
+            <div class="trust__item">
+              <div class="trust__icon" aria-hidden="true"><i class="fa-solid fa-camera-retro"></i></div>
+              <div>
+                <p class="trust__title">Photo checklist</p>
+                <p class="trust__text">Clear before/after coverage so you can trust the turnover.</p>
+              </div>
+            </div>
+            <div class="trust__item">
+              <div class="trust__icon" aria-hidden="true"><i class="fa-solid fa-sheet-plastic"></i></div>
+              <div>
+                <p class="trust__title">Linens + restocking</p>
+                <p class="trust__text">Add-on support for fresh beds and essentials (as requested).</p>
+              </div>
+            </div>
+            <div class="trust__item">
+              <div class="trust__icon" aria-hidden="true"><i class="fa-solid fa-shield-heart"></i></div>
+              <div>
+                <p class="trust__title">Backup coverage</p>
+                <p class="trust__text">When schedules get tight, we plan for continuity.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero__card hero__anim" aria-label="Quick booking preview">
+          <p class="eyebrow">Fast booking</p>
+          <h2 class="h2" style="margin-top:0;">Tell us your turnover details</h2>
+          <p class="lead">Use the form below to request a turnover, deep clean, linen add-on, or a quote. We’ll follow up promptly.</p>
+          <div class="divider"></div>
+          <div class="pill"><i class="fa-solid fa-clock"></i> Typical turnaround: same-day / next-day depending on schedule</div>
+          <div class="pill"><i class="fa-solid fa-location-dot"></i> Serving <span id="primaryCityInline">Your City</span> + nearby</div>
+          <div class="divider"></div>
+          <a class="btn btn--primary" href="#book" style="width:100%;"><i class="fa-solid fa-arrow-right"></i><span>Go to Booking Form</span></a>
+          <p class="hint" style="margin:10px 0 0;">Prefer to call or text? Tap <strong>Call/Text</strong> above.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container reveal">
+        <p class="eyebrow">How it works</p>
+        <h2 class="h2">A smoother turnover, every time</h2>
+        <p class="lead">We focus on the details that protect your reviews: consistent standards, clear communication, and a process designed for short-term rentals.</p>
+      </div>
+
+      <div class="container grid grid-3" style="margin-top:18px;">
+        <div class="card reveal">
+          <div class="card__top">
+            <div class="card__icon" aria-hidden="true"><i class="fa-solid fa-list-check"></i></div>
+            <div>
+              <p class="card__title">Turnover checklist</p>
+              <p class="card__desc">Rooms, surfaces, kitchen, bathrooms—done with consistency.</p>
+            </div>
+          </div>
+          <ul class="clean">
+            <li><i class="fa-solid fa-check"></i><span>Guest-ready reset: beds, baths, kitchen, common areas</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Trash, fridge check, and final presentation touches</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Photos available on request for peace of mind</span></li>
+          </ul>
+        </div>
+
+        <div class="card card--soft reveal">
+          <div class="card__top">
+            <div class="card__icon" aria-hidden="true"><i class="fa-solid fa-shirt"></i></div>
+            <div>
+              <p class="card__title">Linen service (add-on)</p>
+              <p class="card__desc">Optional support for linens so you can scale with less stress.</p>
+            </div>
+          </div>
+          <ul class="clean">
+            <li><i class="fa-solid fa-check"></i><span>Fresh linens/towels swap (as arranged)</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Bed-making and presentation</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Restock coordination if needed</span></li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <div class="card__top">
+            <div class="card__icon" aria-hidden="true"><i class="fa-solid fa-bolt"></i></div>
+            <div>
+              <p class="card__title">Same-day rush</p>
+              <p class="card__desc">When available, we can support tight turnarounds.</p>
+            </div>
+          </div>
+          <ul class="clean">
+            <li><i class="fa-solid fa-check"></i><span>Priority scheduling where possible</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Clear confirmation & ETA windows</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Backup coverage planning for critical dates</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container reveal">
+        <p class="eyebrow">Services</p>
+        <h2 class="h2">Everything you need for Airbnb turnovers</h2>
+        <p class="lead">Choose the core turnover and add on linens/restocking as needed. Need something custom? Select “Quote Request” in the form.</p>
+      </div>
+
+      <div class="container grid grid-3" style="margin-top:18px;">
+        <div class="card reveal">
+          <div class="card__top">
+            <div class="card__icon" aria-hidden="true"><i class="fa-solid fa-house-chimney"></i></div>
+            <div>
+              <p class="card__title">Turnover Cleaning (core)</p>
+              <p class="card__desc">Reset the space between guests—clean, staged, and ready.</p>
+            </div>
+          </div>
+          <div class="pill"><i class="fa-solid fa-image"></i> Photo checklist available</div>
+        </div>
+
+        <div class="card card--soft reveal">
+          <div class="card__top">
+            <div class="card__icon" aria-hidden="true"><i class="fa-solid fa-bed"></i></div>
+            <div>
+              <p class="card__title">Linen Service (add-on)</p>
+              <p class="card__desc">Optional linen swap + bed-making support to save you time.</p>
+            </div>
+          </div>
+          <div class="pill"><i class="fa-solid fa-shirt"></i> Add-on to any booking</div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card__top">
+            <div class="card__icon" aria-hidden="true"><i class="fa-solid fa-box-open"></i></div>
+            <div>
+              <p class="card__title">Restocking (add-on)</p>
+              <p class="card__desc">Coordination of essentials (paper goods, soap, coffee, etc.).</p>
+            </div>
+          </div>
+          <div class="pill"><i class="fa-solid fa-basket-shopping"></i> Host-provided inventory</div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card__top">
+            <div class="card__icon" aria-hidden="true"><i class="fa-solid fa-bolt-lightning"></i></div>
+            <div>
+              <p class="card__title">Same-day Rush</p>
+              <p class="card__desc">When available, we’ll prioritize for tight turnovers.</p>
+            </div>
+          </div>
+          <div class="pill"><i class="fa-solid fa-calendar-day"></i> Availability varies</div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card__top">
+            <div class="card__icon" aria-hidden="true"><i class="fa-solid fa-spray-can-sparkles"></i></div>
+            <div>
+              <p class="card__title">Deep Clean</p>
+              <p class="card__desc">Periodic deep cleaning to keep the property review-ready.</p>
+            </div>
+          </div>
+          <div class="pill"><i class="fa-solid fa-wand-magic-sparkles"></i> Great between seasons</div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card__top">
+            <div class="card__icon" aria-hidden="true"><i class="fa-solid fa-comments"></i></div>
+            <div>
+              <p class="card__title">Host coordination</p>
+              <p class="card__desc">Clear notes + quick follow-up so you’re never guessing.</p>
+            </div>
+          </div>
+          <div class="pill"><i class="fa-solid fa-message"></i> SMS/Email updates</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight" id="pricing">
+      <div class="container reveal">
+        <p class="eyebrow">Pricing</p>
+        <h2 class="h2">Simple, transparent turnover ranges</h2>
+        <p class="lead">Use these as a starting point. We confirm the final quote based on size and scope.</p>
+      </div>
+
+      <div class="container grid grid-3" style="margin-top:18px;">
+        <div class="card reveal">
+          <p class="card__title">1BR Turnover</p>
+          <div class="price">$___ – $___ <small>per turnover</small></div>
+          <p class="card__desc">Best for studios/1BR units with standard amenities.</p>
+          <ul class="clean">
+            <li><i class="fa-solid fa-check"></i><span>Kitchen + bathroom reset</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Floors, surfaces, staging</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Optional linen/restock add-ons</span></li>
+          </ul>
+        </div>
+
+        <div class="card card--soft reveal">
+          <p class="card__title">2BR Turnover</p>
+          <div class="price">$___ – $___ <small>per turnover</small></div>
+          <p class="card__desc">Perfect for family-sized units and higher traffic spaces.</p>
+          <ul class="clean">
+            <li><i class="fa-solid fa-check"></i><span>Extra bedroom + bathroom time</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Detail focus for guest-ready presentation</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Photo checklist on request</span></li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <p class="card__title">3BR Turnover</p>
+          <div class="price">$___ – $___ <small>per turnover</small></div>
+          <p class="card__desc">For larger homes and more complex turnovers.</p>
+          <ul class="clean">
+            <li><i class="fa-solid fa-check"></i><span>More rooms + higher linen load</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Flexible scheduling options</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Rush availability when possible</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container reveal" style="margin-top:14px;">
+        <div class="note"><strong>Note:</strong> Final quote depends on size and scope (layout, number of bathrooms, pets, laundry/linens, restocking needs, and turnaround window).</div>
+      </div>
+    </section>
+
+    <section class="section" id="area">
+      <div class="container reveal">
+        <p class="eyebrow">Service Area</p>
+        <h2 class="h2">Local, dependable coverage</h2>
+        <p class="lead">We focus on a tight service area so we can show up reliably for turnover windows. If you’re nearby, request a quote.</p>
+      </div>
+
+      <div class="container grid grid-2" style="margin-top:18px;">
+        <div class="card reveal">
+          <p class="card__title">Primary city</p>
+          <div class="pill"><i class="fa-solid fa-location-dot"></i> <span id="primaryCity">Your City</span></div>
+          <p class="card__desc" style="margin-top:12px;">Nearby areas we commonly serve:</p>
+          <ul class="clean" id="nearbyAreasList"></ul>
+          <div class="divider"></div>
+          <a class="btn btn--primary" href="#book" style="width:100%;"><i class="fa-solid fa-calendar-check"></i><span>Book in This Area</span></a>
+        </div>
+
+        <div class="card card--soft reveal">
+          <p class="card__title">What hosts love</p>
+          <p class="card__desc">A consistent turnover process that protects your reviews and reduces last-minute stress.</p>
+          <ul class="clean" style="margin-top:14px;">
+            <li><i class="fa-solid fa-check"></i><span>Clear scheduling and confirmation</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Notes + accountability on each visit</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Add-ons available as your listing scales</span></li>
+          </ul>
+          <div class="divider"></div>
+          <div class="pill"><i class="fa-solid fa-phone"></i> Prefer to call? <span style="color:var(--muted);">Tap “Call/Text”</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight" id="reviews">
+      <div class="container reveal">
+        <p class="eyebrow">Reviews</p>
+        <h2 class="h2">Hosts trust us with their turnovers</h2>
+        <p class="lead">A few realistic examples of what hosts say after consistent service and communication.</p>
+      </div>
+
+      <div class="container grid grid-3" style="margin-top:18px;">
+        <div class="card reveal">
+          <div class="stars" aria-label="5-star review">★★★★★</div>
+          <p class="review__quote">“They’re reliable and communicative. The photo checklist helped me feel confident about the turnover before the next guest arrived.”</p>
+          <div class="review__meta"><span class="avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></span><span>Host in <span class="js-city-inline">Your City</span></span></div>
+        </div>
+        <div class="card card--soft reveal">
+          <div class="stars" aria-label="5-star review">★★★★★</div>
+          <p class="review__quote">“We’ve had smooth weekend turnovers and fewer last-minute surprises. Great follow-up and clear notes after each clean.”</p>
+          <div class="review__meta"><span class="avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></span><span>Local short-term rental host</span></div>
+        </div>
+        <div class="card reveal">
+          <div class="stars" aria-label="5-star review">★★★★★</div>
+          <p class="review__quote">“The team was professional and consistent. Add-on linens/restocking support made our schedule much easier to manage.”</p>
+          <div class="review__meta"><span class="avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></span><span>Host with multiple listings</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="book">
+      <div class="container reveal">
+        <p class="eyebrow">Book Now</p>
+        <h2 class="h2">Request a turnover or quote</h2>
+        <p class="lead">Submit the form and you’ll see a formatted summary. Your email client will open with a “New Booking Request” message.</p>
+      </div>
+
+      <div class="container grid grid-2" style="margin-top:18px;">
+        <div class="card reveal">
+          <form class="form" id="bookingForm" novalidate>
+            <div class="fields">
+              <div>
+                <label for="name">Name <span style="color:var(--muted);">(required)</span></label>
+                <input class="input" id="name" name="name" autocomplete="name" required placeholder="Your full name" />
+              </div>
+              <div>
+                <label for="phone">Phone <span style="color:var(--muted);">(required)</span></label>
+                <input class="input" id="phone" name="phone" autocomplete="tel" required placeholder="(470) 000-0000" inputmode="tel" />
+              </div>
+              <div>
+                <label for="email">Email <span style="color:var(--muted);">(required)</span></label>
+                <input class="input" id="email" name="email" autocomplete="email" required placeholder="you@example.com" inputmode="email" />
+              </div>
+              <div>
+                <label for="serviceType">Service Type</label>
+                <select id="serviceType" name="serviceType">
+                  <option value="Turnover">Turnover</option>
+                  <option value="Deep Clean">Deep Clean</option>
+                  <option value="Linen Add-on">Linen Add-on</option>
+                  <option value="Quote Request">Quote Request</option>
+                </select>
+                <div class="hint">Pick “Quote Request” if you’re not sure what you need yet.</div>
+              </div>
+              <div class="span-2">
+                <label for="address">Address / Area <span style="color:var(--muted);">(required)</span></label>
+                <input class="input" id="address" name="address" required placeholder="Neighborhood, city, or property address" />
+              </div>
+              <div>
+                <label for="beds">Bedrooms / Bathrooms <span style="color:var(--muted);">(optional)</span></label>
+                <input class="input" id="beds" name="beds" placeholder="e.g., 2BR / 2BA" />
+              </div>
+              <div>
+                <label for="date">Preferred Date <span style="color:var(--muted);">(required)</span></label>
+                <input class="input" id="date" name="date" type="date" required />
+              </div>
+              <div>
+                <label for="timeWindow">Preferred Time Window <span style="color:var(--muted);">(required)</span></label>
+                <select id="timeWindow" name="timeWindow" required>
+                  <option value="" selected disabled>Choose a window…</option>
+                  <option value="8am – 11am">8am – 11am</option>
+                  <option value="11am – 2pm">11am – 2pm</option>
+                  <option value="2pm – 5pm">2pm – 5pm</option>
+                  <option value="5pm – 8pm">5pm – 8pm</option>
+                  <option value="Flexible">Flexible</option>
+                </select>
+              </div>
+              <div class="span-2">
+                <label for="notes">Notes</label>
+                <textarea id="notes" name="notes" placeholder="Anything we should know? Gate codes, parking, pets, special requests…"></textarea>
+              </div>
+              <div class="span-2">
+                <div class="checkbox">
+                  <input id="consent" name="consent" type="checkbox" required />
+                  <div>
+                    <p><strong>I agree to be contacted by SMS/Email</strong> <span style="color:var(--muted);">(required)</span></p>
+                    <p class="hint" style="margin:6px 0 0;">We’ll only use your info to respond to your request.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <button class="btn btn--primary" type="submit" style="width:100%;"><i class="fa-solid fa-paper-plane"></i><span>Submit Request</span></button>
+              <div class="error" id="formError" role="alert" aria-live="polite"></div>
+              <div class="success" id="formSuccess" role="status" aria-live="polite">
+                <h3>Request captured</h3>
+                <p style="margin:0 0 10px;">Your email client should open with a pre-filled message. If it doesn’t, copy the summary below and email us.</p>
+                <pre class="summary" id="requestSummary"></pre>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="card card--soft reveal">
+          <p class="card__title">Need help booking?</p>
+          <p class="card__desc">Call or text and we’ll help you schedule a turnover window.</p>
+          <div class="divider"></div>
+          <a class="btn btn--call" id="callBtnSide" href="#" style="width:100%;"><i class="fa-solid fa-phone"></i><span>Call/Text <span id="phoneDisplayInline">(470) 000-0000</span></span></a>
+          <div class="divider"></div>
+          <p class="card__desc"><strong>Tip:</strong> Use “Quote Request” if you just want a quick price for a simple setup.</p>
+          <ul class="clean" style="margin-top:12px;">
+            <li><i class="fa-solid fa-check"></i><span>We’ll ask a few details and confirm availability</span></li>
+            <li><i class="fa-solid fa-check"></i><span>We can support linens/restocking when requested</span></li>
+            <li><i class="fa-solid fa-check"></i><span>We focus on clear communication and consistency</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container footer__row">
+        <div>
+          <div class="brand" style="padding:0;">
+            <span class="brand__mark" aria-hidden="true"><i class="fa-solid fa-sparkles"></i></span>
+            <span>
+              <div class="brand__name" id="footerBrandName">Turnover Cleaning Co.</div>
+              <div class="brand__tag">Airbnb turnover cleaning you can count on</div>
+            </span>
+          </div>
+          <p class="footer__small" id="businessHours">Business hours: Mon–Sun, 8am–6pm (placeholder). Same-day rush when available.</p>
+          <p class="footer__small">Disclaimer: <strong>We are a local cleaning service. We do not provide medical or hazardous waste cleaning.</strong></p>
+        </div>
+        <div>
+          <p class="footer__meta">
+            <strong id="footerPhone">(470) 000-0000</strong><br/>
+            <span id="footerEmail" style="color:var(--muted);">hello@example.com</span><br/>
+            <span style="color:var(--muted);">Serving <span class="js-city-inline">Your City</span> + nearby</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <div class="floating-cta" aria-label="Mobile booking button">
+      <a class="btn btn--primary" href="#book" id="floatingBookBtn"><i class="fa-solid fa-calendar-check"></i><span>Book Now</span></a>
+    </div>
+  </main>
+
+  <script>
+    /***********************
+     * EDITABLE CONSTANTS
+     ***********************/
+    const BUSINESS = {
+      name: "Turnover Cleaning Co.",
+      phoneDisplay: "(470) 000-0000",
+      phoneTel: "+14700000000",
+      emailTo: "hello@example.com",
+      primaryCity: "Your City",
+      nearbyAreas: ["Nearby Area 1", "Nearby Area 2", "Nearby Area 3", "Nearby Area 4", "Nearby Area 5"],
+      businessHours: "Business hours: Mon–Sun, 8am–6pm (placeholder). Same-day rush when available."
+    };
+
+    const qs = (sel, root=document) => root.querySelector(sel);
+    const qsa = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    function smoothScrollTo(hash){
+      const target = qs(hash);
+      if (target) target.scrollIntoView({behavior:"smooth", block:"start"});
+    }
+
+    function setServiceType(value){
+      const sel = qs("#serviceType");
+      if (sel) sel.value = value;
+    }
+
+    function encodeMailto(subject, body){
+      return `mailto:${BUSINESS.emailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    function requiredValue(input){
+      return (input?.value || "").trim();
+    }
+
+    // Init business text
+    (function init(){
+      qs("#brandName").textContent = BUSINESS.name;
+      qs("#footerBrandName").textContent = BUSINESS.name;
+      qs("#footerPhone").textContent = BUSINESS.phoneDisplay;
+      qs("#phoneDisplayInline").textContent = BUSINESS.phoneDisplay;
+      qs("#footerEmail").textContent = BUSINESS.emailTo;
+      qs("#primaryCity").textContent = BUSINESS.primaryCity;
+      qs("#primaryCityInline").textContent = BUSINESS.primaryCity;
+      qs("#businessHours").textContent = BUSINESS.businessHours;
+
+      const callHref = `tel:${BUSINESS.phoneTel}`;
+      const topBtn = qs("#callBtnTop");
+      const sideBtn = qs("#callBtnSide");
+      if (topBtn) topBtn.href = callHref;
+      if (sideBtn) sideBtn.href = callHref;
+
+      const list = qs("#nearbyAreasList");
+      if (list){
+        list.innerHTML = "";
+        BUSINESS.nearbyAreas.forEach(area => {
+          const li = document.createElement("li");
+          li.innerHTML = `<i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>${area}</span>`;
+          list.appendChild(li);
+        });
+      }
+
+      qsa(".js-city-inline").forEach(el => el.textContent = BUSINESS.primaryCity);
+    })();
+
+    // Hero animation
+    window.addEventListener("load", () => {
+      qsa(".hero__anim").forEach(el => el.classList.add("is-in"));
+    });
+
+    // Smooth scrolling
+    qsa('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        const href = a.getAttribute("href");
+        if (!href || href === "#" || href === "#top") return;
+        const target = qs(href);
+        if (!target) return;
+        e.preventDefault();
+        history.pushState(null, "", href);
+        smoothScrollTo(href);
+      });
+    });
+
+    // CTA behavior
+    const ctaBook = qs("#ctaBook");
+    const ctaQuote = qs("#ctaQuote");
+    function goToForm(selectQuote){
+      if (selectQuote) setServiceType("Quote Request");
+      smoothScrollTo("#book");
+      setTimeout(() => {
+        if (selectQuote) qs("#serviceType")?.focus();
+        else qs("#name")?.focus();
+      }, 400);
+    }
+    if (ctaBook) ctaBook.addEventListener("click", (e) => { e.preventDefault(); goToForm(false); });
+    if (ctaQuote) ctaQuote.addEventListener("click", (e) => { e.preventDefault(); goToForm(true); });
+
+    // Scroll reveal
+    const revealEls = qsa(".reveal");
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          entry.target.classList.add("reveal--show");
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -10% 0px" });
+    revealEls.forEach(el => io.observe(el));
+
+    // Form validation
+    const form = qs("#bookingForm");
+    const errBox = qs("#formError");
+    const successBox = qs("#formSuccess");
+    const summaryEl = qs("#requestSummary");
+
+    function showError(msg){
+      errBox.textContent = msg;
+      errBox.style.display = "block";
+    }
+    function clearError(){
+      errBox.textContent = "";
+      errBox.style.display = "none";
+    }
+    function showSuccess(summary){
+      successBox.style.display = "block";
+      summaryEl.textContent = summary;
+    }
+    function validateEmail(email){
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    if (form){
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        clearError();
+
+        const name = requiredValue(qs("#name"));
+        const phone = requiredValue(qs("#phone"));
+        const email = requiredValue(qs("#email"));
+        const serviceType = requiredValue(qs("#serviceType")) || "Turnover";
+        const address = requiredValue(qs("#address"));
+        const beds = requiredValue(qs("#beds"));
+        const date = requiredValue(qs("#date"));
+        const timeWindow = requiredValue(qs("#timeWindow"));
+        const notes = (qs("#notes")?.value || "").trim();
+        const consent = qs("#consent")?.checked;
+
+        if (!name || !phone || !email || !address || !date || !timeWindow){
+          showError("Please fill out all required fields (Name, Phone, Email, Address/Area, Preferred Date, Preferred Time Window).");
+          return;
+        }
+        if (!validateEmail(email)){
+          showError("Please enter a valid email address.");
+          return;
+        }
+        if (!consent){
+          showError("Please confirm consent to be contacted by SMS/Email.");
+          return;
+        }
+
+        const summaryLines = [
+          `${BUSINESS.name} — New Booking Request`,
+          "--------------------------------------",
+          `Name: ${name}`,
+          `Phone: ${phone}`,
+          `Email: ${email}`,
+          `Service Type: ${serviceType}`,
+          `Address/Area: ${address}`,
+          beds ? `Bedrooms/Bathrooms: ${beds}` : `Bedrooms/Bathrooms: (not provided)`,
+          `Preferred Date: ${date}`,
+          `Preferred Time Window: ${timeWindow}`,
+          notes ? `Notes: ${notes}` : "Notes: (none)",
+          "",
+          "Consent: Yes (contact by SMS/Email)"
+        ];
+
+        const summary = summaryLines.join("\n");
+        showSuccess(summary);
+
+        window.location.href = encodeMailto("New Booking Request", summary);
+        setTimeout(() => successBox.scrollIntoView({behavior:"smooth", block:"nearest"}), 150);
+      });
+    }
+  </script>
+</body>
+</html>
