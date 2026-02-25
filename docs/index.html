@@ -7,10 +7,15 @@
   <meta name="description" content="Premium Airbnb turnover cleaning with weekend availability, photo checklist, linen/restocking support, and backup coverage." />
   <title>Airbnb Turnover Cleaning You Can Count On</title>
 
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='20%25' cy='10%25' r='120%25'%3E%3Cstop offset='0%25' stop-color='%232EC4B6' stop-opacity='0.9'/%3E%3Cstop offset='45%25' stop-color='%232EC4B6' stop-opacity='0.25'/%3E%3Cstop offset='75%25' stop-color='%230B1B2B' stop-opacity='0.05'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect x='4' y='4' width='56' height='56' rx='16' fill='%230B1B2B'/%3E%3Crect x='4' y='4' width='56' height='56' rx='16' fill='url(%23g)'/%3E%3Cpath d='M30 40l-6 6 2-8-6-4 8-1 2-7 3 7 8 1-6 4 2 8z' fill='%23DFF7F4' opacity='0.95'/%3E%3Ccircle cx='44' cy='24' r='3' fill='%23DFF7F4' opacity='0.9'/%3E%3Ccircle cx='48' cy='30' r='2' fill='%23DFF7F4' opacity='0.7'/%3E%3C/svg%3E" />
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;700&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
 
   <style>
@@ -35,15 +40,36 @@
       margin:0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color: var(--navy);
-      background:#fff;
+      background:
+        radial-gradient(1100px 520px at 12% 0%, rgba(46,196,182,0.22) 0%, rgba(46,196,182,0.06) 45%, rgba(255,255,255,0) 70%),
+        radial-gradient(900px 520px at 88% 5%, rgba(11,27,43,0.10) 0%, rgba(11,27,43,0.02) 55%, rgba(255,255,255,0) 75%),
+        linear-gradient(180deg, rgba(11,27,43,0.02) 0%, rgba(255,255,255,1) 40%, rgba(11,27,43,0.02) 100%);
       line-height:1.55;
       -webkit-font-smoothing: antialiased;
       overflow-x:hidden;
     }
-    a{color:inherit;text-decoration:none;}
+
+    /* Links (including “sent through messages” expectation -> visited state) */
+    a{color: inherit; text-decoration:none;}
+    main a:not(.btn):not(.brand){ color: rgba(11,27,43,0.90); text-decoration: underline; text-decoration-color: rgba(46,196,182,0.55); text-underline-offset: 3px; }
+    main a:not(.btn):not(.brand):hover{ color: var(--teal2); text-decoration-color: rgba(46,196,182,0.85); }
+    main a:not(.btn):not(.brand):visited{ color: rgba(31,169,157,0.92); }
 
     .container{width:min(100% - 32px, var(--container)); margin:0 auto;}
-    .section{padding:72px 0;}
+
+    /* Sections with gradient to avoid harsh whitespace */
+    .section{
+      padding:72px 0;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.86) 0%, rgba(11,27,43,0.02) 100%);
+      border-top: 1px solid rgba(11,27,43,0.06);
+    }
+    .section:nth-of-type(even){
+      background:
+        radial-gradient(900px 420px at 20% 10%, rgba(46,196,182,0.16) 0%, rgba(46,196,182,0.06) 50%, rgba(255,255,255,0) 75%),
+        linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(11,27,43,0.02) 100%);
+    }
     .section--tight{padding:56px 0;}
 
     .grid{display:grid; gap:18px;}
@@ -54,7 +80,7 @@
       .grid-3{grid-template-columns:repeat(3,1fr); gap:22px;}
     }
 
-    /* Nav */
+    /* Top nav */
     .nav{
       position:sticky; top:0; z-index:50;
       background: rgba(255,255,255,0.86);
@@ -62,7 +88,7 @@
       border-bottom: 1px solid var(--border);
     }
     .nav__row{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0;}
-    .brand{display:flex; align-items:center; gap:10px; min-width:220px;}
+    .brand{display:flex; align-items:center; gap:10px; min-width:220px; text-decoration:none;}
     .brand__mark{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#DFF7F4;
       background: radial-gradient(120% 120% at 20% 10%, rgba(46,196,182,0.85) 0%, rgba(46,196,182,0.25) 40%, rgba(11,27,43,0.05) 70%),
                   linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
@@ -70,8 +96,9 @@
     }
     .brand__name{font-weight:800; letter-spacing:-0.02em; font-size:14px; line-height:1.1;}
     .brand__tag{font-size:12px; color: rgba(11,27,43,0.66); margin-top:2px;}
+
     .nav__links{display:none; align-items:center; gap:18px;}
-    .nav__links a{font-size:14px; color: rgba(11,27,43,0.82); padding:8px 10px; border-radius:10px; transition: background 160ms ease, color 160ms ease;}
+    .nav__links a{font-size:14px; color: rgba(11,27,43,0.82); padding:8px 10px; border-radius:10px; transition: background 160ms ease, color 160ms ease; text-decoration:none;}
     .nav__links a:hover{background: rgba(46,196,182,0.10); color: var(--navy);}
     @media(min-width:860px){.nav__links{display:flex;}}
 
@@ -93,6 +120,7 @@
       user-select:none;
       -webkit-tap-highlight-color: transparent;
       white-space:nowrap;
+      text-decoration:none;
     }
     .btn:focus-visible{outline:none; box-shadow: 0 0 0 4px rgba(46,196,182,0.25);}
     .btn--small{padding:10px 12px; border-radius:12px; font-size:13.5px;}
@@ -103,6 +131,15 @@
     .btn--call{background: rgba(11,27,43,0.06); border-color: rgba(11,27,43,0.14); color: rgba(11,27,43,0.92);}
     .btn--call:hover{background: rgba(11,27,43,0.09); transform: translateY(-1px);}
 
+    /* Continuous bounce animation (subtle) */
+    @keyframes floatBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .bounce{
+      animation: floatBounce 1.35s ease-in-out infinite;
+    }
+
     /* Hero */
     .hero{
       padding: 62px 0 26px;
@@ -112,6 +149,7 @@
         linear-gradient(180deg, rgba(11,27,43,0.04) 0%, rgba(255,255,255,1) 70%);
       position:relative;
       overflow:hidden;
+      border-bottom: 1px solid rgba(11,27,43,0.06);
     }
     .hero::before{
       content:"";
@@ -134,6 +172,7 @@
       font-weight:700;
       font-size:13px;
     }
+
     h1{font-family: Fraunces, Georgia, serif; letter-spacing:-0.03em; line-height:1.06; margin:14px 0 10px; font-size: clamp(34px, 4.2vw, 54px);}
     .hero__sub{font-size:16px; color: rgba(11,27,43,0.78); margin: 0 0 18px; max-width:62ch;}
 
@@ -175,12 +214,115 @@
 
     .note{margin-top:14px; color: rgba(11,27,43,0.66); font-size:13px; padding:12px 14px; border:1px dashed rgba(11,27,43,0.18); border-radius:14px; background: rgba(11,27,43,0.03);}
 
+    /* Responsive map embed */
+    .map-embed{margin-top:14px; border-radius: 16px; overflow:hidden; border: 1px solid rgba(11,27,43,0.10); box-shadow: 0 10px 22px rgba(11,27,43,0.10);}
+    .map-embed .ratio{position:relative; width:100%; padding-top: 56.25%;}
+    .map-embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
+
+    /* Reviews carousel (continuous left scroll, pause on hover) */
+    .marquee{position: relative; overflow:hidden; border-radius: var(--r-lg);}
+    .marquee::before, .marquee::after{
+      content:"";
+      position:absolute;
+      top:0; bottom:0;
+      width: 56px;
+      z-index: 2;
+      pointer-events:none;
+    }
+    .marquee::before{left:0; background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);} 
+    .marquee::after{right:0; background: linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);} 
+
+    .marquee__track{
+      display:flex;
+      gap: 16px;
+      width: max-content;
+      animation: marqueeLeft 28s linear infinite;
+      padding: 2px 2px 10px;
+    }
+    .marquee:hover .marquee__track,
+    .marquee:focus-within .marquee__track{ animation-play-state: paused; }
+
+    @keyframes marqueeLeft{
+      from{ transform: translateX(0); }
+      to{ transform: translateX(-50%); }
+    }
+
+    .review-card{min-width: 285px; max-width: 320px;}
+    @media(min-width:860px){ .review-card{min-width: 340px; max-width: 380px;} }
+
     .stars{color: rgba(46,196,182,0.95); letter-spacing:1px; margin-bottom:10px; font-size:14px;}
     .review__quote{margin:0; color: rgba(11,27,43,0.76); font-size:14.5px;}
     .review__meta{margin-top:12px; display:flex; align-items:center; gap:10px; color: rgba(11,27,43,0.70); font-size:13px; font-weight:700;}
     .avatar{width:34px;height:34px;border-radius:12px;background: linear-gradient(135deg, rgba(46,196,182,0.25), rgba(11,27,43,0.06)); border:1px solid rgba(11,27,43,0.08); display:grid; place-items:center;}
 
-    /* Form */
+    /* Before/after compare slider */
+    .compare{
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(11,27,43,0.10);
+      background: rgba(255,255,255,0.75);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .compare__stage{ position:relative; width:100%; aspect-ratio: 16 / 9; background: #f4f7f8; }
+    .compare__img{ position:absolute; inset:0; width:100%; height:100%; object-fit: cover; }
+    .compare__afterWrap{ position:absolute; inset:0; width: 50%; overflow:hidden; }
+
+    .compare__handle{
+      position:absolute;
+      top:0; bottom:0;
+      left: 50%;
+      width: 2px;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 0 0 1px rgba(11,27,43,0.18);
+      transform: translateX(-1px);
+    }
+    .compare__knob{
+      position:absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px; height: 48px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,27,43,0.18);
+      background: rgba(255,255,255,0.88);
+      display:grid;
+      place-items:center;
+      box-shadow: 0 10px 20px rgba(11,27,43,0.16);
+    }
+    .compare__labels{
+      position:absolute;
+      inset: 14px 14px auto 14px;
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      pointer-events:none;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(11,27,43,0.75);
+      color: #fff;
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      backdrop-filter: blur(8px);
+    }
+    .badge--teal{ background: rgba(46,196,182,0.85); color: rgba(6,34,37,1); }
+
+    .compare__rangeWrap{
+      padding: 14px 16px;
+      border-top: 1px solid rgba(11,27,43,0.08);
+      display:flex;
+      align-items:center;
+      gap: 12px;
+    }
+    .compare__rangeWrap small{ color: rgba(11,27,43,0.64); font-weight: 800; }
+    .compare__range{ width:100%; accent-color: var(--teal2); }
+
+    /* Booking Form */
     .form{display:grid; gap:12px;}
     .fields{display:grid; gap:12px; grid-template-columns:1fr;}
     @media(min-width:860px){.fields{grid-template-columns: repeat(2, 1fr);} .span-2{grid-column: 1 / -1;}}
@@ -190,12 +332,12 @@
     .input:focus, select:focus, textarea:focus{outline:none; border-color: rgba(46,196,182,0.55); box-shadow: 0 0 0 4px rgba(46,196,182,0.18);}
     .hint{margin-top:6px; font-size:12.5px; color: rgba(11,27,43,0.60);}
 
-    .checkbox{display:flex; gap:10px; align-items:flex-start; padding:12px 12px; border:1px solid rgba(11,27,43,0.12); border-radius:14px; background: rgba(11,27,43,0.03);}
+    .checkbox{display:flex; gap:10px; align-items:flex-start; padding:12px 12px; border:1px solid rgba(11,27,43,0.12); border-radius:14px; background: rgba(11,27,43,0.03);} 
     .checkbox input{margin-top:3px;}
     .checkbox p{margin:0; color: rgba(11,27,43,0.72); font-size:13.5px;}
 
     .error{display:none; margin-top:8px; padding:10px 12px; border-radius:14px; border:1px solid rgba(220,38,38,0.22); background: rgba(220,38,38,0.06); color: rgba(127,29,29,0.95); font-weight:700; font-size:13.5px;}
-    .success{display:none; margin-top:12px; padding:14px 14px; border-radius:16px; border:1px solid rgba(46,196,182,0.30); background: rgba(46,196,182,0.10);}
+    .success{display:none; margin-top:12px; padding:14px 14px; border-radius:16px; border:1px solid rgba(46,196,182,0.30); background: rgba(46,196,182,0.10);} 
     .success h3{margin:0 0 8px; font-size:16px;}
 
     .summary{margin:0; white-space:pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -205,6 +347,7 @@
 
     .divider{height:1px; background: rgba(11,27,43,0.10); margin:18px 0;}
 
+    /* Footer */
     .footer{padding:28px 0 90px; border-top:1px solid var(--border); background: linear-gradient(180deg, rgba(11,27,43,0.02), rgba(255,255,255,1));}
     .footer__row{display:grid; gap:10px; grid-template-columns:1fr;}
     @media(min-width:860px){.footer__row{grid-template-columns:1.2fr 0.8fr; align-items:start;}}
@@ -212,15 +355,24 @@
     .footer__meta{font-size:13px; color: rgba(11,27,43,0.70); margin:0; text-align:left;}
     @media(min-width:860px){.footer__meta{text-align:right;}}
 
-    /* Reveals */
+    /* Reveal animations */
     .reveal{opacity:0; transform: translateY(14px); transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2,0.8,0.2,1);}
     .reveal.reveal--show{opacity:1; transform: translateY(0);}
     .hero__anim{opacity:0; transform: translateY(18px); transition: opacity 900ms ease, transform 900ms cubic-bezier(0.2,0.85,0.2,1);}
     .hero__anim.is-in{opacity:1; transform: translateY(0);}
 
+    /* Mobile floating button */
     .floating-cta{position:fixed; left:14px; right:14px; bottom:14px; z-index:60; display:none;}
     .floating-cta .btn{width:100%; border-radius:16px; padding:14px 16px; box-shadow: 0 16px 32px rgba(11,27,43,0.18);}
     @media(max-width:859px){.floating-cta{display:block;}}
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      .reveal, .hero__anim{ transition: none !important; }
+      .bounce{ animation: none !important; }
+      .marquee__track{ animation: none !important; }
+      html:focus-within{ scroll-behavior: auto; }
+    }
   </style>
 </head>
 <body>
@@ -243,7 +395,7 @@
       </nav>
 
       <div class="nav__cta">
-        <a class="btn btn--call btn--small" id="callBtnTop" href="#" aria-label="Call or text">
+        <a class="btn btn--call btn--small js-call" href="#" aria-label="Call or text">
           <i class="fa-solid fa-phone"></i><span>Call/Text</span>
         </a>
         <a class="btn btn--primary btn--small" href="#book"><i class="fa-solid fa-calendar-check"></i><span>Book Now</span></a>
@@ -354,7 +506,7 @@
           </div>
           <ul class="clean">
             <li><i class="fa-solid fa-check"></i><span>Priority scheduling where possible</span></li>
-            <li><i class="fa-solid fa-check"></i><span>Clear confirmation & ETA windows</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Clear confirmation &amp; ETA windows</span></li>
             <li><i class="fa-solid fa-check"></i><span>Backup coverage planning for critical dates</span></li>
           </ul>
         </div>
@@ -494,8 +646,16 @@
       <div class="container grid grid-2" style="margin-top:18px;">
         <div class="card reveal">
           <p class="card__title">Primary city</p>
-          <div class="pill"><i class="fa-solid fa-location-dot"></i> <span id="primaryCity">Your City</span></div>
-          <p class="card__desc" style="margin-top:12px;">Nearby areas we commonly serve:</p>
+          <div class="pill"><i class="fa-solid fa-location-dot"></i> <span id="primaryCity">Atlanta, GA</span></div>
+
+          <!-- Embedded Google Map (Atlanta) -->
+          <div class="map-embed" aria-label="Service area map">
+            <div class="ratio">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106135.71321522322!2d-84.50260761909479!3d33.76735712196475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5045d6993098d%3A0x66fede2f990b630b!2sAtlanta%2C%20GA!5e0!3m2!1sen!2sus!4v1772034269239!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+
+          <p class="card__desc" style="margin-top:12px;">Nearby areas we commonly serve (Fulton County):</p>
           <ul class="clean" id="nearbyAreasList"></ul>
           <div class="divider"></div>
           <a class="btn btn--primary" href="#book" style="width:100%;"><i class="fa-solid fa-calendar-check"></i><span>Book in This Area</span></a>
@@ -510,7 +670,7 @@
             <li><i class="fa-solid fa-check"></i><span>Add-ons available as your listing scales</span></li>
           </ul>
           <div class="divider"></div>
-          <div class="pill"><i class="fa-solid fa-phone"></i> Prefer to call? <span style="color:var(--muted);">Tap “Call/Text”</span></div>
+          <a class="btn btn--call js-call" href="#" style="width:100%;"><i class="fa-solid fa-phone"></i><span>Call/Text <span id="phoneDisplayInline">(470) 000-0000</span></span></a>
         </div>
       </div>
     </section>
@@ -522,21 +682,56 @@
         <p class="lead">A few realistic examples of what hosts say after consistent service and communication.</p>
       </div>
 
-      <div class="container grid grid-3" style="margin-top:18px;">
-        <div class="card reveal">
-          <div class="stars" aria-label="5-star review">★★★★★</div>
-          <p class="review__quote">“They’re reliable and communicative. The photo checklist helped me feel confident about the turnover before the next guest arrived.”</p>
-          <div class="review__meta"><span class="avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></span><span>Host in <span class="js-city-inline">Your City</span></span></div>
+      <div class="container reveal" style="margin-top:18px;">
+        <div class="marquee" tabindex="0" aria-label="Review carousel (auto scrolls left; pauses on hover)">
+          <div class="marquee__track" id="reviewsTrack">
+            <!-- Cards duplicated by JS for seamless looping -->
+            <article class="card review-card" aria-label="Review">
+              <div class="stars" aria-label="5-star review">★★★★★</div>
+              <p class="review__quote">“They’re reliable and communicative. The photo checklist helped me feel confident about the turnover before the next guest arrived.”</p>
+              <div class="review__meta"><span class="avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></span><span>Host in <span class="js-city-inline">Atlanta, GA</span></span></div>
+            </article>
+            <article class="card review-card card--soft" aria-label="Review">
+              <div class="stars" aria-label="5-star review">★★★★★</div>
+              <p class="review__quote">“We’ve had smooth weekend turnovers and fewer last-minute surprises. Great follow-up and clear notes after each clean.”</p>
+              <div class="review__meta"><span class="avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></span><span>Local short-term rental host</span></div>
+            </article>
+            <article class="card review-card" aria-label="Review">
+              <div class="stars" aria-label="5-star review">★★★★★</div>
+              <p class="review__quote">“The team was professional and consistent. Add-on linens/restocking support made our schedule much easier to manage.”</p>
+              <div class="review__meta"><span class="avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></span><span>Host with multiple listings</span></div>
+            </article>
+          </div>
         </div>
-        <div class="card card--soft reveal">
-          <div class="stars" aria-label="5-star review">★★★★★</div>
-          <p class="review__quote">“We’ve had smooth weekend turnovers and fewer last-minute surprises. Great follow-up and clear notes after each clean.”</p>
-          <div class="review__meta"><span class="avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></span><span>Local short-term rental host</span></div>
-        </div>
-        <div class="card reveal">
-          <div class="stars" aria-label="5-star review">★★★★★</div>
-          <p class="review__quote">“The team was professional and consistent. Add-on linens/restocking support made our schedule much easier to manage.”</p>
-          <div class="review__meta"><span class="avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></span><span>Host with multiple listings</span></div>
+        <p class="hint" style="margin:10px 0 0;">Tip: hover/tap the carousel to pause and read.</p>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container reveal">
+        <p class="eyebrow">Before &amp; After</p>
+        <h2 class="h2">See the difference</h2>
+        <p class="lead">Slide right to reveal the “after” and left to see the “before.” Replace the demo images in the JS constants.</p>
+      </div>
+
+      <div class="container reveal" style="margin-top:18px;">
+        <div class="compare" aria-label="Before and after slider">
+          <div class="compare__stage" id="compareStage">
+            <img class="compare__img" id="imgBefore" alt="Before cleaning" />
+            <div class="compare__afterWrap" id="afterWrap">
+              <img class="compare__img" id="imgAfter" alt="After cleaning" />
+            </div>
+            <div class="compare__labels" aria-hidden="true">
+              <span class="badge">Before</span>
+              <span class="badge badge--teal">After</span>
+            </div>
+            <div class="compare__handle" id="compareHandle" aria-hidden="true"></div>
+            <div class="compare__knob" aria-hidden="true"><i class="fa-solid fa-left-right"></i></div>
+          </div>
+          <div class="compare__rangeWrap">
+            <small>Slide</small>
+            <input class="compare__range" id="compareRange" type="range" min="0" max="100" value="50" aria-label="Before and after slider" />
+          </div>
         </div>
       </div>
     </section>
@@ -624,11 +819,11 @@
           </form>
         </div>
 
-        <div class="card card--soft reveal">
+        <div class="card card--soft reveal" aria-label="Booking help">
           <p class="card__title">Need help booking?</p>
           <p class="card__desc">Call or text and we’ll help you schedule a turnover window.</p>
           <div class="divider"></div>
-          <a class="btn btn--call" id="callBtnSide" href="#" style="width:100%;"><i class="fa-solid fa-phone"></i><span>Call/Text <span id="phoneDisplayInline">(470) 000-0000</span></span></a>
+          <a class="btn btn--call js-call" href="#" style="width:100%;"><i class="fa-solid fa-phone"></i><span>Call/Text <span id="phoneDisplayInline2">(470) 000-0000</span></span></a>
           <div class="divider"></div>
           <p class="card__desc"><strong>Tip:</strong> Use “Quote Request” if you just want a quick price for a simple setup.</p>
           <ul class="clean" style="margin-top:12px;">
@@ -657,14 +852,14 @@
           <p class="footer__meta">
             <strong id="footerPhone">(470) 000-0000</strong><br/>
             <span id="footerEmail" style="color:var(--muted);">hello@example.com</span><br/>
-            <span style="color:var(--muted);">Serving <span class="js-city-inline">Your City</span> + nearby</span>
+            <span style="color:var(--muted);">Serving <span class="js-city-inline">Atlanta, GA</span> + nearby</span>
           </p>
         </div>
       </div>
     </footer>
 
     <div class="floating-cta" aria-label="Mobile booking button">
-      <a class="btn btn--primary" href="#book" id="floatingBookBtn"><i class="fa-solid fa-calendar-check"></i><span>Book Now</span></a>
+      <a class="btn btn--primary bounce" href="#book" id="floatingBookBtn"><i class="fa-solid fa-calendar-check"></i><span>Book Now</span></a>
     </div>
   </main>
 
@@ -677,9 +872,14 @@
       phoneDisplay: "(470) 000-0000",
       phoneTel: "+14700000000",
       emailTo: "hello@example.com",
-      primaryCity: "Your City",
-      nearbyAreas: ["Nearby Area 1", "Nearby Area 2", "Nearby Area 3", "Nearby Area 4", "Nearby Area 5"],
-      businessHours: "Business hours: Mon–Sun, 8am–6pm (placeholder). Same-day rush when available."
+      primaryCity: "Atlanta, GA",
+      // Fulton County area suggestions around Atlanta
+      nearbyAreas: ["Sandy Springs", "Roswell", "Alpharetta", "East Point", "College Park", "Hapeville", "Milton", "Johns Creek"],
+      businessHours: "Business hours: Mon–Sun, 8am–6pm (placeholder). Same-day rush when available.",
+
+      // Before/After demo images (replace with your own URLs)
+      beforeImg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%23e5e7eb'/%3E%3Cstop offset='1' stop-color='%23cbd5e1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1600' height='900' fill='url(%23b)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Arial' font-size='56' fill='%230B1B2B' opacity='0.55'%3EBefore%3C/text%3E%3C/svg%3E",
+      afterImg:  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%232EC4B6' stop-opacity='0.25'/%3E%3Cstop offset='1' stop-color='%23ffffff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1600' height='900' fill='url(%23a)'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Arial' font-size='56' fill='%230B1B2B' opacity='0.55'%3EAfter%3C/text%3E%3C/svg%3E"
     };
 
     const qs = (sel, root=document) => root.querySelector(sel);
@@ -703,34 +903,52 @@
       return (input?.value || "").trim();
     }
 
+    function applyCallTextLinks(){
+      const callHref = `tel:${BUSINESS.phoneTel}`;
+      qsa(".js-call").forEach(el => {
+        el.href = callHref;
+        el.setAttribute("aria-label", `Call or text ${BUSINESS.phoneDisplay}`);
+      });
+    }
+
     // Init business text
     (function init(){
       qs("#brandName").textContent = BUSINESS.name;
       qs("#footerBrandName").textContent = BUSINESS.name;
       qs("#footerPhone").textContent = BUSINESS.phoneDisplay;
       qs("#phoneDisplayInline").textContent = BUSINESS.phoneDisplay;
+      qs("#phoneDisplayInline2").textContent = BUSINESS.phoneDisplay;
       qs("#footerEmail").textContent = BUSINESS.emailTo;
       qs("#primaryCity").textContent = BUSINESS.primaryCity;
       qs("#primaryCityInline").textContent = BUSINESS.primaryCity;
       qs("#businessHours").textContent = BUSINESS.businessHours;
 
-      const callHref = `tel:${BUSINESS.phoneTel}`;
-      const topBtn = qs("#callBtnTop");
-      const sideBtn = qs("#callBtnSide");
-      if (topBtn) topBtn.href = callHref;
-      if (sideBtn) sideBtn.href = callHref;
-
+      // Nearby areas
       const list = qs("#nearbyAreasList");
       if (list){
         list.innerHTML = "";
-        BUSINESS.nearbyAreas.forEach(area => {
+        BUSINESS.nearbyAreas.slice(0, 10).forEach(area => {
           const li = document.createElement("li");
-          li.innerHTML = `<i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>${area}</span>`;
+          li.innerHTML = `<i class=\"fa-solid fa-location-dot\" aria-hidden=\"true\"></i><span>${area}</span>`;
           list.appendChild(li);
         });
       }
 
+      // Inline city placeholders
       qsa(".js-city-inline").forEach(el => el.textContent = BUSINESS.primaryCity);
+
+      applyCallTextLinks();
+
+      // Before/after images
+      qs("#imgBefore").src = BUSINESS.beforeImg;
+      qs("#imgAfter").src = BUSINESS.afterImg;
+
+      // Duplicate review cards for seamless marquee loop
+      const track = qs("#reviewsTrack");
+      if (track){
+        const cards = Array.from(track.children);
+        cards.forEach(c => track.appendChild(c.cloneNode(true)));
+      }
     })();
 
     // Hero animation
@@ -777,6 +995,33 @@
     }, { threshold: 0.15, rootMargin: "0px 0px -10% 0px" });
     revealEls.forEach(el => io.observe(el));
 
+    // Before/after slider wiring
+    const range = qs("#compareRange");
+    const afterWrap = qs("#afterWrap");
+    const handle = qs("#compareHandle");
+    const stage = qs("#compareStage");
+
+    function setCompare(pct){
+      const v = Math.max(0, Math.min(100, pct));
+      if (afterWrap) afterWrap.style.width = v + "%";
+      if (handle) handle.style.left = v + "%";
+    }
+
+    if (range){
+      range.addEventListener("input", () => setCompare(Number(range.value)));
+      setCompare(Number(range.value));
+    }
+
+    // Optional: click/tap stage to jump slider
+    if (stage && range){
+      stage.addEventListener("pointerdown", (e) => {
+        const rect = stage.getBoundingClientRect();
+        const pct = ((e.clientX - rect.left) / rect.width) * 100;
+        range.value = String(Math.max(0, Math.min(100, pct)));
+        setCompare(Number(range.value));
+      });
+    }
+
     // Form validation
     const form = qs("#bookingForm");
     const errBox = qs("#formError");
@@ -816,7 +1061,7 @@
         const consent = qs("#consent")?.checked;
 
         if (!name || !phone || !email || !address || !date || !timeWindow){
-          showError("Please fill out all required fields (Name, Phone, Email, Address/Area, Preferred Date, Preferred Time Window).");
+          showError("Please fill out all required fields (Name, Phone, Email, Address/Area, Preferred Date, Preferred Time Window). ");
           return;
         }
         if (!validateEmail(email)){
