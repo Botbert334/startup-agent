@@ -214,6 +214,68 @@
 
     .note{margin-top:14px; color: rgba(11,27,43,0.66); font-size:13px; padding:12px 14px; border:1px dashed rgba(11,27,43,0.18); border-radius:14px; background: rgba(11,27,43,0.03);}
 
+    /* Add-ons pricing */
+    .addons{
+      margin-top: 18px;
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(11,27,43,0.10);
+      background: rgba(255,255,255,0.78);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .addons__head{
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid rgba(11,27,43,0.08);
+      background: linear-gradient(180deg, rgba(46,196,182,0.10), rgba(255,255,255,0.76));
+    }
+    .addons__title{margin:0; font-weight: 900; letter-spacing: -0.01em;}
+    .addons__sub{margin:6px 0 0; color: rgba(11,27,43,0.70); font-size: 13.5px;}
+
+    .addons__grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    @media(min-width: 860px){
+      .addons__grid{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .addon{
+      display:flex;
+      gap: 12px;
+      padding: 14px 16px;
+      border-top: 1px solid rgba(11,27,43,0.06);
+      align-items:flex-start;
+    }
+    .addon:nth-child(1), .addon:nth-child(2){ border-top: 0; }
+    .addon__icon{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      border: 1px solid rgba(46,196,182,0.22);
+      background: rgba(46,196,182,0.10);
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+      overflow:hidden;
+    }
+    .addon__icon img{ width: 22px; height: 22px; display:block; }
+    .addon__name{ margin:0; font-weight: 900; }
+    .addon__desc{ margin:2px 0 0; color: rgba(11,27,43,0.70); font-size: 13.5px; }
+    .addon__price{
+      margin-top: 8px;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(11,27,43,0.04);
+      border: 1px solid rgba(11,27,43,0.10);
+      color: rgba(11,27,43,0.82);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
     /* Responsive map embed */
     .map-embed{margin-top:14px; border-radius: 16px; overflow:hidden; border: 1px solid rgba(11,27,43,0.10); box-shadow: 0 10px 22px rgba(11,27,43,0.10);}
     .map-embed .ratio{position:relative; width:100%; padding-top: 56.25%;}
@@ -592,26 +654,26 @@
     <section class="section section--tight" id="pricing">
       <div class="container reveal">
         <p class="eyebrow">Pricing</p>
-        <h2 class="h2">Simple, transparent turnover ranges</h2>
-        <p class="lead">Use these as a starting point. We confirm the final quote based on size and scope.</p>
+        <h2 class="h2">Fair, simple turnover pricing (Atlanta)</h2>
+        <p class="lead">If you want to look slightly cheaper than competitors, we publish the “starting at” number and confirm the final quote after details.</p>
       </div>
 
       <div class="container grid grid-3" style="margin-top:18px;">
         <div class="card reveal">
           <p class="card__title">1BR Turnover</p>
-          <div class="price">$___ – $___ <small>per turnover</small></div>
-          <p class="card__desc">Best for studios/1BR units with standard amenities.</p>
+          <div class="price">$110–$150 <small>per turnover</small></div>
+          <p class="card__desc"><strong>Starting at $110</strong> for standard 1BR turnovers.</p>
           <ul class="clean">
             <li><i class="fa-solid fa-check"></i><span>Kitchen + bathroom reset</span></li>
             <li><i class="fa-solid fa-check"></i><span>Floors, surfaces, staging</span></li>
-            <li><i class="fa-solid fa-check"></i><span>Optional linen/restock add-ons</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Add-ons available (linens, restocking, rush)</span></li>
           </ul>
         </div>
 
         <div class="card card--soft reveal">
           <p class="card__title">2BR Turnover</p>
-          <div class="price">$___ – $___ <small>per turnover</small></div>
-          <p class="card__desc">Perfect for family-sized units and higher traffic spaces.</p>
+          <div class="price">$140–$200 <small>per turnover</small></div>
+          <p class="card__desc"><strong>Starting at $140</strong> for standard 2BR turnovers.</p>
           <ul class="clean">
             <li><i class="fa-solid fa-check"></i><span>Extra bedroom + bathroom time</span></li>
             <li><i class="fa-solid fa-check"></i><span>Detail focus for guest-ready presentation</span></li>
@@ -621,18 +683,102 @@
 
         <div class="card reveal">
           <p class="card__title">3BR Turnover</p>
-          <div class="price">$___ – $___ <small>per turnover</small></div>
-          <p class="card__desc">For larger homes and more complex turnovers.</p>
+          <div class="price">$180–$260 <small>per turnover</small></div>
+          <p class="card__desc"><strong>Starting at $180</strong> for standard 3BR turnovers.</p>
           <ul class="clean">
             <li><i class="fa-solid fa-check"></i><span>More rooms + higher linen load</span></li>
             <li><i class="fa-solid fa-check"></i><span>Flexible scheduling options</span></li>
-            <li><i class="fa-solid fa-check"></i><span>Rush availability when possible</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Rush available when possible</span></li>
           </ul>
         </div>
       </div>
 
       <div class="container reveal" style="margin-top:14px;">
-        <div class="note"><strong>Note:</strong> Final quote depends on size and scope (layout, number of bathrooms, pets, laundry/linens, restocking needs, and turnaround window).</div>
+        <div class="note"><strong>Minimum charge:</strong> we don’t go below <strong>$99</strong> for any turnover.<br>
+          <strong>Condition clause:</strong> “Excessive mess / party cleanup billed extra after photos + approval.”
+        </div>
+      </div>
+
+      <div class="container reveal">
+        <div class="addons" aria-label="Add-on pricing">
+          <div class="addons__head">
+            <p class="addons__title">Simple add-ons (keeps pricing profitable)</p>
+            <p class="addons__sub">Add-ons are optional. Final quote depends on size/scope (layout, bathrooms, pets, laundry/linens, restocking needs, and turnaround window).</p>
+          </div>
+          <div class="addons__grid">
+            <div class="addon">
+              <div class="addon__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/washing-machine.png" alt="" loading="lazy"></div>
+              <div>
+                <p class="addon__name">Laundry / linens washed &amp; dried on-site</p>
+                <p class="addon__desc">For hosts who want the full reset between guests.</p>
+                <div class="addon__price">+$20–$40</div>
+              </div>
+            </div>
+
+            <div class="addon">
+              <div class="addon__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/bed.png" alt="" loading="lazy"></div>
+              <div>
+                <p class="addon__name">Bed linen change only</p>
+                <p class="addon__desc">Host provides clean sets (priced per bed).</p>
+                <div class="addon__price">+$10–$20 / bed</div>
+              </div>
+            </div>
+
+            <div class="addon">
+              <div class="addon__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/shopping-bag.png" alt="" loading="lazy"></div>
+              <div>
+                <p class="addon__name">Restock run</p>
+                <p class="addon__desc">Toilet paper / paper towels / soap, etc. (plus reimbursement for supplies).</p>
+                <div class="addon__price">+$10–$25 + supplies</div>
+              </div>
+            </div>
+
+            <div class="addon">
+              <div class="addon__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/broom.png" alt="" loading="lazy"></div>
+              <div>
+                <p class="addon__name">Deep clean upgrade</p>
+                <p class="addon__desc">Extra detail work when the unit needs a reset.</p>
+                <div class="addon__price">+$80–$150</div>
+              </div>
+            </div>
+
+            <div class="addon">
+              <div class="addon__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/fast-forward.png" alt="" loading="lazy"></div>
+              <div>
+                <p class="addon__name">Same-day / rush turnover</p>
+                <p class="addon__desc">When availability allows, we prioritize your turnover window.</p>
+                <div class="addon__price">+$30–$75</div>
+              </div>
+            </div>
+
+            <div class="addon">
+              <div class="addon__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/bath.png" alt="" loading="lazy"></div>
+              <div>
+                <p class="addon__name">Extra bathroom</p>
+                <p class="addon__desc">Additional bathrooms beyond standard scope.</p>
+                <div class="addon__price">+$20–$35</div>
+              </div>
+            </div>
+
+            <div class="addon">
+              <div class="addon__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/dog.png" alt="" loading="lazy"></div>
+              <div>
+                <p class="addon__name">Pets fee</p>
+                <p class="addon__desc">Extra time for pet hair and odor control as needed.</p>
+                <div class="addon__price">+$15–$35</div>
+              </div>
+            </div>
+
+            <div class="addon">
+              <div class="addon__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/camera.png" alt="" loading="lazy"></div>
+              <div>
+                <p class="addon__name">Condition photo set</p>
+                <p class="addon__desc">Extra documentation for peace of mind and claims protection.</p>
+                <div class="addon__price">+$0 (included on request)</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
