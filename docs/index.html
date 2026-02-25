@@ -940,7 +940,7 @@
       <div class="container reveal">
         <p class="eyebrow">Before &amp; After</p>
         <h2 class="h2">See the difference</h2>
-        <p class="lead">Slide to compare the before and after. Replace the demo images in the JS constants.</p>
+        <p class="lead">Slide right to reveal the “after” and left to see the “before.” Replace the demo images in the JS constants.</p>
       </div>
 
       <div class="container reveal" style="margin-top:18px;">
@@ -1204,10 +1204,9 @@
       businessHours: "Business hours: Mon–Sun, 8am–6pm (placeholder). Same-day rush when available.",
 
       // Before/After demo images (replace with your own URLs)
-      beforeImg: "./assets/before-bedroom.jpg",
-      afterImg:  "./assets/after-bedroom.jpg",
-      // Set true to swap which side shows which image in the slider
-      swapCompare: true
+      // Swapped per your note (the current before image should be after, and vice versa)
+      beforeImg: "./assets/after-bedroom.jpg",
+      afterImg:  "./assets/before-bedroom.jpg"
     };
 
     const qs = (sel, root=document) => root.querySelector(sel);
@@ -1268,42 +1267,8 @@
       applyCallTextLinks();
 
       // Before/after images
-      const beforeEl = qs("#imgBefore");
-      const afterEl = qs("#imgAfter");
-      if (beforeEl && afterEl){
-        // When swapCompare is true, we intentionally show AFTER on the left and BEFORE on the right
-        const swap = !!BUSINESS.swapCompare;
-
-        if (swap){
-          // base = BEFORE, overlay(left) = AFTER  → left shows AFTER, right shows BEFORE
-          beforeEl.src = BUSINESS.beforeImg;
-          afterEl.src  = BUSINESS.afterImg;
-          beforeEl.alt = "Before cleaning";
-          afterEl.alt  = "After cleaning";
-        } else {
-          // base = AFTER, overlay(left) = BEFORE  → left shows BEFORE, right shows AFTER
-          beforeEl.src = BUSINESS.afterImg;
-          afterEl.src  = BUSINESS.beforeImg;
-          beforeEl.alt = "After cleaning";
-          afterEl.alt  = "Before cleaning";
-        }
-
-        const badges = qsa(".compare__labels .badge");
-        if (badges.length >= 2){
-          if (swap){
-            // Left badge should match AFTER
-            badges[0].textContent = "After";
-            badges[1].textContent = "Before";
-            badges[0].classList.add("badge--teal");
-            badges[1].classList.remove("badge--teal");
-          } else {
-            badges[0].textContent = "Before";
-            badges[1].textContent = "After";
-            badges[0].classList.remove("badge--teal");
-            badges[1].classList.add("badge--teal");
-          }
-        }
-      }
+      qs("#imgBefore").src = BUSINESS.beforeImg;
+      qs("#imgAfter").src = BUSINESS.afterImg;
 
       // Duplicate review cards for seamless marquee loop
       const track = qs("#reviewsTrack");
