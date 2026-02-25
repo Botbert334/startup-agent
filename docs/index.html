@@ -394,6 +394,69 @@
     .input:focus, select:focus, textarea:focus{outline:none; border-color: rgba(46,196,182,0.55); box-shadow: 0 0 0 4px rgba(46,196,182,0.18);}
     .hint{margin-top:6px; font-size:12.5px; color: rgba(11,27,43,0.60);}
 
+    /* Form add-ons */
+    .addon-picks{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    @media(min-width:860px){
+      .addon-picks{ grid-template-columns: 1fr 1fr; }
+    }
+    .addonpick{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(11,27,43,0.12);
+      background: rgba(255,255,255,0.72);
+      cursor:pointer;
+      user-select:none;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+    .addonpick:hover{
+      transform: translateY(-1px);
+      border-color: rgba(46,196,182,0.28);
+      background: rgba(46,196,182,0.06);
+    }
+    .addonpick input{ width: 18px; height: 18px; accent-color: var(--teal2); }
+    .addonpick__icon{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      border: 1px solid rgba(46,196,182,0.22);
+      background: rgba(46,196,182,0.10);
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+      overflow:hidden;
+    }
+    .addonpick__icon img{ width: 22px; height: 22px; display:block; }
+    .addonpick__text{ flex: 1 1 auto; min-width: 0; }
+    .addonpick__name{ margin:0; font-weight: 900; letter-spacing: -0.01em; font-size: 13.5px; }
+    .addonpick__meta{ margin:2px 0 0; color: rgba(11,27,43,0.66); font-size: 12.5px; }
+    .addonpick__price{
+      flex: 0 0 auto;
+      font-weight: 900;
+      font-size: 13px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(11,27,43,0.04);
+      border: 1px solid rgba(11,27,43,0.10);
+      color: rgba(11,27,43,0.82);
+      white-space: nowrap;
+    }
+    .addon-qty{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    @media(min-width:860px){
+      .addon-qty{ grid-template-columns: 1fr 1fr; }
+    }
+
     .checkbox{display:flex; gap:10px; align-items:flex-start; padding:12px 12px; border:1px solid rgba(11,27,43,0.12); border-radius:14px; background: rgba(11,27,43,0.03);} 
     .checkbox input{margin-top:3px;}
     .checkbox p{margin:0; color: rgba(11,27,43,0.72); font-size:13.5px;}
@@ -939,6 +1002,94 @@
                 </select>
               </div>
               <div class="span-2">
+                <label>Add-ons (optional)</label>
+                <div class="addon-picks" aria-label="Add-on selections">
+                  <label class="addonpick" for="addonLaundry">
+                    <input id="addonLaundry" type="checkbox" />
+                    <span class="addonpick__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/washing-machine.png" alt="" loading="lazy"></span>
+                    <span class="addonpick__text">
+                      <span class="addonpick__name">Laundry / linens on-site</span>
+                      <span class="addonpick__meta">Washed &amp; dried on-site</span>
+                    </span>
+                    <span class="addonpick__price">+$20</span>
+                  </label>
+
+                  <label class="addonpick" for="addonLinenChange">
+                    <input id="addonLinenChange" type="checkbox" />
+                    <span class="addonpick__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/bed.png" alt="" loading="lazy"></span>
+                    <span class="addonpick__text">
+                      <span class="addonpick__name">Bed linen change</span>
+                      <span class="addonpick__meta">Host provides clean sets</span>
+                    </span>
+                    <span class="addonpick__price">+$10/bed</span>
+                  </label>
+
+                  <label class="addonpick" for="addonRestock">
+                    <input id="addonRestock" type="checkbox" />
+                    <span class="addonpick__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/shopping-bag.png" alt="" loading="lazy"></span>
+                    <span class="addonpick__text">
+                      <span class="addonpick__name">Restock run</span>
+                      <span class="addonpick__meta">+ reimbursement for supplies</span>
+                    </span>
+                    <span class="addonpick__price">+$10</span>
+                  </label>
+
+                  <label class="addonpick" for="addonDeepUpgrade">
+                    <input id="addonDeepUpgrade" type="checkbox" />
+                    <span class="addonpick__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/broom.png" alt="" loading="lazy"></span>
+                    <span class="addonpick__text">
+                      <span class="addonpick__name">Deep clean upgrade</span>
+                      <span class="addonpick__meta">Extra detail work</span>
+                    </span>
+                    <span class="addonpick__price">+$80</span>
+                  </label>
+
+                  <label class="addonpick" for="addonRush">
+                    <input id="addonRush" type="checkbox" />
+                    <span class="addonpick__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/fast-forward.png" alt="" loading="lazy"></span>
+                    <span class="addonpick__text">
+                      <span class="addonpick__name">Same-day / rush</span>
+                      <span class="addonpick__meta">When available</span>
+                    </span>
+                    <span class="addonpick__price">+$30</span>
+                  </label>
+
+                  <label class="addonpick" for="addonExtraBath">
+                    <input id="addonExtraBath" type="checkbox" />
+                    <span class="addonpick__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/bath.png" alt="" loading="lazy"></span>
+                    <span class="addonpick__text">
+                      <span class="addonpick__name">Extra bathroom</span>
+                      <span class="addonpick__meta">Beyond standard scope</span>
+                    </span>
+                    <span class="addonpick__price">+$20</span>
+                  </label>
+
+                  <label class="addonpick" for="addonPets">
+                    <input id="addonPets" type="checkbox" />
+                    <span class="addonpick__icon" aria-hidden="true"><img src="https://img.icons8.com/fluency/48/dog.png" alt="" loading="lazy"></span>
+                    <span class="addonpick__text">
+                      <span class="addonpick__name">Pets fee</span>
+                      <span class="addonpick__meta">Extra pet hair/odor time</span>
+                    </span>
+                    <span class="addonpick__price">+$15</span>
+                  </label>
+                </div>
+
+                <div class="addon-qty" aria-label="Add-on quantities">
+                  <div>
+                    <label for="linenBeds">Beds (for linen change)</label>
+                    <input class="input" id="linenBeds" name="linenBeds" type="number" min="1" step="1" placeholder="e.g., 2" />
+                    <div class="hint">Only needed if you select “Bed linen change”.</div>
+                  </div>
+                  <div>
+                    <label for="extraBaths">Extra bathrooms</label>
+                    <input class="input" id="extraBaths" name="extraBaths" type="number" min="1" step="1" placeholder="e.g., 1" />
+                    <div class="hint">Only needed if you select “Extra bathroom”.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="span-2">
                 <label for="notes">Notes</label>
                 <textarea id="notes" name="notes" placeholder="Anything we should know? Gate codes, parking, pets, special requests…"></textarea>
               </div>
@@ -1206,6 +1357,18 @@
         const notes = (qs("#notes")?.value || "").trim();
         const consent = qs("#consent")?.checked;
 
+        // Add-ons
+        const addonLaundry = qs("#addonLaundry")?.checked;
+        const addonLinenChange = qs("#addonLinenChange")?.checked;
+        const addonRestock = qs("#addonRestock")?.checked;
+        const addonDeepUpgrade = qs("#addonDeepUpgrade")?.checked;
+        const addonRush = qs("#addonRush")?.checked;
+        const addonExtraBath = qs("#addonExtraBath")?.checked;
+        const addonPets = qs("#addonPets")?.checked;
+
+        const linenBeds = requiredValue(qs("#linenBeds"));
+        const extraBaths = requiredValue(qs("#extraBaths"));
+
         if (!name || !phone || !email || !address || !date || !timeWindow){
           showError("Please fill out all required fields (Name, Phone, Email, Address/Area, Preferred Date, Preferred Time Window). ");
           return;
@@ -1219,6 +1382,27 @@
           return;
         }
 
+        // Add-on quantity checks (only if selected)
+        if (addonLinenChange && !linenBeds){
+          showError("Please enter how many beds for ‘Bed linen change’. ");
+          qs("#linenBeds")?.focus();
+          return;
+        }
+        if (addonExtraBath && !extraBaths){
+          showError("Please enter how many extra bathrooms. ");
+          qs("#extraBaths")?.focus();
+          return;
+        }
+
+        const addons = [];
+        if (addonLaundry) addons.push("Laundry / linens on-site (+$20)");
+        if (addonLinenChange) addons.push(`Bed linen change (+$10/bed) — beds: ${linenBeds}`);
+        if (addonRestock) addons.push("Restock run (+$10) + reimbursement for supplies");
+        if (addonDeepUpgrade) addons.push("Deep clean upgrade (+$80)");
+        if (addonRush) addons.push("Same-day / rush (+$30) — when available");
+        if (addonExtraBath) addons.push(`Extra bathroom (+$20) — count: ${extraBaths}`);
+        if (addonPets) addons.push("Pets fee (+$15)");
+
         const summaryLines = [
           `${BUSINESS.name} — New Booking Request`,
           "--------------------------------------",
@@ -1230,6 +1414,7 @@
           beds ? `Bedrooms/Bathrooms: ${beds}` : `Bedrooms/Bathrooms: (not provided)`,
           `Preferred Date: ${date}`,
           `Preferred Time Window: ${timeWindow}`,
+          addons.length ? `Add-ons: ${addons.join("; ")}` : "Add-ons: (none)",
           notes ? `Notes: ${notes}` : "Notes: (none)",
           "",
           "Consent: Yes (contact by SMS/Email)"
