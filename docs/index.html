@@ -376,7 +376,7 @@
       box-shadow: var(--shadow2);
       overflow:hidden;
     }
-    .compare__stage{ position:relative; width:100%; aspect-ratio: 16 / 9; background: #f4f7f8; }
+    .compare__stage{ position:relative; width:100%; aspect-ratio: 16 / 9; background: #f4f7f8; touch-action: none; cursor: ew-resize; }
     .compare__img{ position:absolute; inset:0; width:100%; height:100%; object-fit: cover; }
     .compare__afterWrap{ position:absolute; inset:0; width: 50%; overflow:hidden; }
 
@@ -401,6 +401,7 @@
       display:grid;
       place-items:center;
       box-shadow: 0 10px 20px rgba(11,27,43,0.16);
+      cursor: ew-resize;
     }
     .compare__labels{
       position:absolute;
@@ -779,7 +780,7 @@
         <div class="pricing-table card reveal" aria-label="Bedroom pricing">
           <div class="pricing-table__head">
             <div class="pricing-table__col">Bedroom</div>
-            <div class="pricing-table__col">Average Pricing</div>
+            <div class="pricing-table__col">Starting at</div>
           </div>
           <div class="pricing-table__body">
             <div class="pricing-table__row">
@@ -793,6 +794,34 @@
             <div class="pricing-table__row">
               <div class="pricing-table__left"><span class="pricing-bed" aria-hidden="true"><i class="fa-solid fa-bed"></i></span>3 Bedroom</div>
               <div class="pricing-table__right">$180</div>
+            </div>
+            <div class="pricing-table__row">
+              <div class="pricing-table__left"><span class="pricing-bed" aria-hidden="true"><i class="fa-solid fa-bed"></i></span>4 Bedroom</div>
+              <div class="pricing-table__right">$155+</div>
+            </div>
+            <div class="pricing-table__row">
+              <div class="pricing-table__left"><span class="pricing-bed" aria-hidden="true"><i class="fa-solid fa-bed"></i></span>5 Bedroom</div>
+              <div class="pricing-table__right">$175+</div>
+            </div>
+            <div class="pricing-table__row">
+              <div class="pricing-table__left"><span class="pricing-bed" aria-hidden="true"><i class="fa-solid fa-bed"></i></span>6 Bedroom</div>
+              <div class="pricing-table__right">$195+</div>
+            </div>
+            <div class="pricing-table__row">
+              <div class="pricing-table__left"><span class="pricing-bed" aria-hidden="true"><i class="fa-solid fa-bed"></i></span>7 Bedroom</div>
+              <div class="pricing-table__right">$250+</div>
+            </div>
+            <div class="pricing-table__row">
+              <div class="pricing-table__left"><span class="pricing-bed" aria-hidden="true"><i class="fa-solid fa-bed"></i></span>8 Bedroom</div>
+              <div class="pricing-table__right">$295+</div>
+            </div>
+            <div class="pricing-table__row">
+              <div class="pricing-table__left"><span class="pricing-bed" aria-hidden="true"><i class="fa-solid fa-bed"></i></span>9 Bedroom</div>
+              <div class="pricing-table__right">$325+</div>
+            </div>
+            <div class="pricing-table__row">
+              <div class="pricing-table__left"><span class="pricing-bed" aria-hidden="true"><i class="fa-solid fa-bed"></i></span>10 Bedroom</div>
+              <div class="pricing-table__right">$345+</div>
             </div>
           </div>
         </div>
@@ -977,7 +1006,7 @@
               <span class="badge badge--teal">After</span>
             </div>
             <div class="compare__handle" id="compareHandle" aria-hidden="true"></div>
-            <div class="compare__knob" aria-hidden="true"><i class="fa-solid fa-left-right"></i></div>
+            <div class="compare__knob" id="compareKnob" aria-hidden="true"><i class="fa-solid fa-left-right"></i></div>
           </div>
           <div class="compare__rangeWrap">
             <small>Slide</small>
@@ -1226,8 +1255,9 @@
       businessHours: "Business hours: Mon–Sun, 8am–6pm (placeholder). Same-day rush when available.",
 
       // Before/After demo images (replace with your own URLs)
-      beforeImg: "./assets/before-bedroom.jpg",
-      afterImg:  "./assets/after-bedroom.jpg"
+      // Swapped per your note (the current before image should be after, and vice versa)
+      beforeImg: "./assets/after-bedroom.jpg",
+      afterImg:  "./assets/before-bedroom.jpg"
     };
 
     const qs = (sel, root=document) => root.querySelector(sel);
@@ -1359,12 +1389,14 @@
     const range = qs("#compareRange");
     const afterWrap = qs("#afterWrap");
     const handle = qs("#compareHandle");
+    const knob = qs("#compareKnob");
     const stage = qs("#compareStage");
 
     function setCompare(pct){
       const v = Math.max(0, Math.min(100, pct));
       if (afterWrap) afterWrap.style.width = v + "%";
       if (handle) handle.style.left = v + "%";
+      if (knob) knob.style.left = v + "%";
     }
 
     if (range){
@@ -1372,14 +1404,38 @@
       setCompare(Number(range.value));
     }
 
-    // Optional: click/tap stage to jump slider
+    // Drag on the image (pointer events)
     if (stage && range){
-      stage.addEventListener("pointerdown", (e) => {
+      let dragging = false;
+
+      const updateFromClientX = (clientX) => {
         const rect = stage.getBoundingClientRect();
-        const pct = ((e.clientX - rect.left) / rect.width) * 100;
-        range.value = String(Math.max(0, Math.min(100, pct)));
-        setCompare(Number(range.value));
+        const pct = ((clientX - rect.left) / rect.width) * 100;
+        const clamped = Math.max(0, Math.min(100, pct));
+        range.value = String(clamped);
+        setCompare(clamped);
+      };
+
+      stage.addEventListener("pointerdown", (e) => {
+        dragging = true;
+        stage.setPointerCapture(e.pointerId);
+        updateFromClientX(e.clientX);
       });
+
+      stage.addEventListener("pointermove", (e) => {
+        if (!dragging) return;
+        updateFromClientX(e.clientX);
+      });
+
+      const endDrag = (e) => {
+        if (!dragging) return;
+        dragging = false;
+        try { stage.releasePointerCapture(e.pointerId); } catch (_) {}
+      };
+
+      stage.addEventListener("pointerup", endDrag);
+      stage.addEventListener("pointercancel", endDrag);
+      stage.addEventListener("pointerleave", (e) => { if (dragging) updateFromClientX(e.clientX); });
     }
 
     // Form validation
