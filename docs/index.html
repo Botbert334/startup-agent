@@ -483,6 +483,9 @@
     /* Reveal animations */
     .reveal{opacity:0; transform: translateY(14px); transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2,0.8,0.2,1);}
     .reveal.reveal--show{opacity:1; transform: translateY(0);}
+    /* Pop variant for staggered items */
+    .reveal.reveal-pop{ transform: translateY(18px) scale(0.98); }
+    .reveal.reveal-pop.reveal--show{ transform: translateY(0) scale(1); }
     .hero__anim{opacity:0; transform: translateY(18px); transition: opacity 900ms ease, transform 900ms cubic-bezier(0.2,0.85,0.2,1);}
     .hero__anim.is-in{opacity:1; transform: translateY(0);}
 
@@ -1246,6 +1249,18 @@
         const cards = Array.from(track.children);
         cards.forEach(c => track.appendChild(c.cloneNode(true)));
       }
+
+      // Stagger-pop: Pricing add-ons (animate one-by-one on scroll)
+      qsa(".addons__grid .addon").forEach((el, i) => {
+        el.classList.add("reveal", "reveal-pop");
+        el.style.transitionDelay = `${i * 70}ms`;
+      });
+
+      // (Optional) Stagger-pop: Form add-ons too
+      qsa(".addon-picks .addonpick").forEach((el, i) => {
+        el.classList.add("reveal", "reveal-pop");
+        el.style.transitionDelay = `${i * 55}ms`;
+      });
     })();
 
     // Hero animation
