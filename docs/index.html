@@ -395,14 +395,14 @@
       box-shadow: var(--shadow2);
       overflow:hidden;
     }
-    .compare__stage{ position:relative; width:100%; aspect-ratio: 16 / 9; background: #f4f7f8; touch-action: none; cursor: ew-resize; }
+    .compare__stage{ position:relative; width:100%; aspect-ratio: 16 / 9; background: #f4f7f8; touch-action: none; cursor: ew-resize; --pos: 50%; }
     .compare__img{ position:absolute; inset:0; width:100%; height:100%; object-fit: cover; }
-    .compare__afterWrap{ position:absolute; inset:0; width: 50%; overflow:hidden; }
+    .compare__afterWrap{ position:absolute; inset:0; width: var(--pos); overflow:hidden; }
 
     .compare__handle{
       position:absolute;
       top:0; bottom:0;
-      left: 50%;
+      left: var(--pos);
       width: 2px;
       background: rgba(255,255,255,0.9);
       box-shadow: 0 0 0 1px rgba(11,27,43,0.18);
@@ -410,7 +410,7 @@
     }
     .compare__knob{
       position:absolute;
-      left: 50%;
+      left: var(--pos);
       top: 50%;
       transform: translate(-50%, -50%);
       width: 48px; height: 48px;
@@ -422,14 +422,10 @@
       box-shadow: 0 10px 20px rgba(11,27,43,0.16);
       cursor: ew-resize;
     }
-    .compare__labels{
-      position:absolute;
-      inset: 14px 14px auto 14px;
-      display:flex;
-      justify-content: space-between;
-      gap: 12px;
-      pointer-events:none;
-    }
+    .compare__labels{ position:absolute; inset:0; pointer-events:none; }
+    .compare__label{ position:absolute; top:14px; display:flex; align-items:flex-start; overflow:hidden; }
+    .compare__label--before{ left:0; width: var(--pos); padding-left:14px; justify-content:flex-start; }
+    .compare__label--after{ left: var(--pos); width: calc(100% - var(--pos)); padding-right:14px; justify-content:flex-end; }
     .badge{
       display:inline-flex;
       align-items:center;
@@ -951,8 +947,8 @@
               <img class="compare__img" id="imgAfter" alt="After cleaning" />
             </div>
             <div class="compare__labels" aria-hidden="true">
-              <span class="badge">Before</span>
-              <span class="badge badge--teal">After</span>
+              <div class="compare__label compare__label--before"><span class="badge">Before</span></div>
+              <div class="compare__label compare__label--after"><span class="badge badge--teal">After</span></div>
             </div>
             <div class="compare__handle" id="compareHandle" aria-hidden="true"></div>
             <div class="compare__knob" id="compareKnob" aria-hidden="true"><i class="fa-solid fa-left-right"></i></div>
@@ -1343,6 +1339,8 @@
 
     function setCompare(pct){
       const v = Math.max(0, Math.min(100, pct));
+      // Keep CSS + layout in sync; this also lets us clip the badges to the visible halves
+      if (stage) stage.style.setProperty("--pos", v + "%");
       if (afterWrap) afterWrap.style.width = v + "%";
       if (handle) handle.style.left = v + "%";
       if (knob) knob.style.left = v + "%";
