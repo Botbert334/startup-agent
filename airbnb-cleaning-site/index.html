@@ -75,7 +75,9 @@
       background: radial-gradient(120% 120% at 20% 10%, rgba(255,176,138,0.85) 0%, rgba(255,176,138,0.25) 40%, rgba(11,27,43,0.05) 70%),
                   linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
       box-shadow: var(--shadow2);
+      overflow:hidden;
     }
+    .brand__mark img{width:100%;height:100%;object-fit:cover;display:block; will-change: transform; animation: broom-sweep 3.6s ease-in-out infinite;}
     .brand__name{font-weight:800; letter-spacing:-0.02em; font-size:14px; line-height:1.1;}
     .brand__tag{font-size:12px; color: rgba(11,27,43,0.66); margin-top:2px;}
     .nav__links{display:none; align-items:center; gap:18px;}
@@ -84,6 +86,13 @@
     @media(min-width:860px){.nav__links{display:flex;}}
 
     .nav__cta{display:flex; gap:10px; align-items:center;}
+
+    /* Subtle “broom sweep” motion on the logo (no audio; respects reduced-motion) */
+    @keyframes broom-sweep{
+      0%, 100% { transform: rotate(0deg) translateX(0) translateY(0); }
+      35% { transform: rotate(-4deg) translateX(-1px) translateY(0px); }
+      70% { transform: rotate(3deg) translateX(1px) translateY(-1px); }
+    }
 
     @media(max-width:520px){
       .nav__row{padding:10px 0; gap:10px;}
