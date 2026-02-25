@@ -110,16 +110,21 @@
 
     .nav__cta{display:flex; gap:10px; align-items:center;}
 
-    @media(max-width:480px){
-      .brand{min-width:0;}
+    @media(max-width:520px){
+      .nav__row{padding:10px 0; gap:10px;}
+
+      /* Let the brand shrink without wrapping the name into two lines */
+      .brand{min-width:0; flex:1;}
+      .brand > span:last-child{min-width:0;}
       .brand__tag{display:none;}
-      .brand__mark{width:34px;height:34px;border-radius:10px;}
-      .brand__name{font-size:13px;}
-      .nav__row{padding:10px 0;}
-      .nav__cta{gap:8px;}
+      .brand__mark{width:32px;height:32px;border-radius:10px;}
+      .brand__name{font-size:13px; line-height:1.1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:46vw;}
+
+      .nav__cta{gap:8px; flex:0 0 auto;}
       .btn--small{padding:9px 10px;}
     }
-    @media(max-width:360px){
+    @media(max-width:420px){
+      /* Save space: keep the call icon, hide the text */
       .nav__cta .btn--call span{display:none;}
     }
 
